@@ -23,17 +23,10 @@ export const regulars = (guess, correct) => {
 
   guessArray.forEach((guessValue, guessIndex) => {
     correctArray.forEach((correctValue, correctIndex) => {
-      if (
-        guessValue === correctValue &&
-        guessIndex !== correctIndex
-      ) {
+      if (guessValue === correctValue && guessIndex !== correctIndex) {
         result++;
       }
     });
   });
   return result;
-};
-
-export const attempt = (guess, correct) => {
-  return `${goods(guess, correct)} bien, ${regulars} regular`;
 };
