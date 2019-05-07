@@ -35,15 +35,18 @@ export default class App extends Component {
     const attemptMessage = this.attempt(guess, correct);
     let newTries = this.state.tries;
     newTries.push(attemptMessage);
-    return this.setState({ tries: newTries });
+    return this.setState({ tries: newTries, guess: "" });
   }
 
-  attempt (guess, correct) {
+  attempt(guess, correct) {
     if (goods(guess, correct) === 4 && regulars(guess, correct) === 0) {
-      return `${goods(guess, correct)} bien, ${regulars(guess, correct)} regular. JUEGO TERMINADO!`;  
+      return `${goods(guess, correct)} bien, ${regulars(
+        guess,
+        correct
+      )} regular. JUEGO TERMINADO!`;
     }
     return `${goods(guess, correct)} bien, ${regulars(guess, correct)} regular`;
-  };
+  }
 
   render() {
     const { tries } = this.state;
