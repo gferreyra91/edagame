@@ -20,9 +20,13 @@ export const regulars = (guess, correct) => {
 
   const guessArray = guess.split("");
   const correctArray = correct.split("");
+
   guessArray.forEach((guessValue, guessIndex) => {
     correctArray.forEach((correctValue, correctIndex) => {
-      if (guessValue === correctValue && guessIndex !== correctIndex) {
+      if (
+        guessValue === correctValue &&
+        guessIndex !== correctIndex
+      ) {
         result++;
       }
     });
