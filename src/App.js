@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { attempt } from "./Controller";
+import { goods, regulars } from "./Controller";
 import "./App.css";
 
 export default class App extends Component {
@@ -14,6 +14,7 @@ export default class App extends Component {
     this.handleCorrectChange = this.handleCorrectChange.bind(this);
     this.handleGuessChange = this.handleGuessChange.bind(this);
     this.handleGuessSend = this.handleGuessSend.bind(this);
+    this.attempt = this.attempt.bind(this);
   }
 
   newGame() {
@@ -31,11 +32,18 @@ export default class App extends Component {
   handleGuessSend(event) {
     event.preventDefault();
     const { guess, correct } = this.state;
-    const attemptMessage = attempt(guess, correct);
+    const attemptMessage = this.attempt(guess, correct);
     let newTries = this.state.tries;
     newTries.push(attemptMessage);
     return this.setState({ tries: newTries });
   }
+
+  attempt (guess, correct) {
+    if (goods(guess, correct) === 4 && regulars(guess, correct) === 0) {
+      return `${goods(guess, correct)} bien, ${regulars(guess, correct)} regular. JUEGO TERMINADO!`;  
+    }
+    return `${goods(guess, correct)} bien, ${regulars(guess, correct)} regular`;
+  };
 
   render() {
     const { tries } = this.state;
