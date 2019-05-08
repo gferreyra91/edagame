@@ -14,4 +14,5 @@ it('regulars between guess and target', () => {
     expect(regulars(4321, 1234)).toEqual(4);
     expect(regulars(1234, 1234)).toEqual(0);
     expect(regulars(2121, 1234)).toEqual(2);
+    expect(regulars(2121, 1212)).toEqual(4);
 })
