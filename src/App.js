@@ -34,7 +34,7 @@ export default class App extends Component {
     const { guess, correct } = this.state;
     const attemptMessage = this.attempt(guess, correct);
     let newTries = this.state.tries;
-    newTries.push(attemptMessage);
+    newTries.push(`${guess}, ${attemptMessage}`);
     return this.setState({ tries: newTries, guess: "" });
   }
 
