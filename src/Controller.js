@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 export const goods = (guess, correct) => {
   let result = 0;
@@ -29,19 +29,21 @@ export const regulars = (guess, correct) => {
     }
   });
 
-  const correctArrayWithNoGoods = correctArray.filter((value, index) => {
+  let correctArrayWithNoGoods = correctArray.filter((value, index) => {
     if (value !== guessArray[index]) {
       return value;
     }
   });
 
-  const guessArrayWithNoGoodsWithUniques = _.uniq(guessArrayWithNoGoods);
-
-  guessArrayWithNoGoodsWithUniques.forEach((value, index) => {
+  guessArrayWithNoGoods.forEach((value, index) => {
     if (correctArrayWithNoGoods.includes(value)) {
-      result ++
+      const indexToRemove = correctArrayWithNoGoods.indexOf(value);
+      correctArrayWithNoGoods = correctArrayWithNoGoods.filter(
+        (value, index) => index !== indexToRemove
+      );
+      result++;
     }
-  })
+  });
 
   return result;
 };
