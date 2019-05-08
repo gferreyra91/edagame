@@ -21,12 +21,23 @@ export const regulars = (guess, correct) => {
   const guessArray = guess.split("");
   const correctArray = correct.split("");
 
-  guessArray.forEach((guessValue, guessIndex) => {
-    correctArray.forEach((correctValue, correctIndex) => {
-      if (guessValue === correctValue && guessIndex !== correctIndex) {
+  const noGoods = removeGoods(guessArray, correctArray);
+
+  correctArray.forEach((correctValue, correctIndex) => {
+    noGoods.forEach((noGoodValue, noGoodIndex) => {
+      if (correctValue === noGoodValue) {
         result++;
       }
     });
   });
   return result;
+};
+
+const removeGoods = (guessArray, correctArray) => {
+  const noGoods = guessArray.filter((value, index) => {
+    if (value !== correctArray[index]) {
+      return value;
+    }
+  });
+  return noGoods;
 };
