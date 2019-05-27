@@ -23,17 +23,27 @@ export const regulars = (guess, correct) => {
   const guessArray = guess.split("");
   const correctArray = correct.split("");
 
-  const guessArrayWithNoGoods = guessArray.filter((value, index) => {
-    if (value !== correctArray[index]) {
-      return value;
+  guessArray.forEach((guessValue, guessIndex) => {
+    correctArray.forEach((correctValue, correctIndex) => {
+      if (guessValue === correctValue && guessIndex !== correctIndex) {
+        result++;
     }
+  });
   });
 
-  let correctArrayWithNoGoods = correctArray.filter((value, index) => {
-    if (value !== guessArray[index]) {
-      return value;
-    }
+  return result;
+};
+
+export const areDifferents = guess => {
+  guess = guess.toString();
+  const guessArray = guess.split("");
+
+  const result = guessArray.every((value, index, array) => {
+    const arrayWithoutElement = array.slice(index + 1);
+    return arrayWithoutElement.includes(value) ? false : true;
   });
+  return result;
+};
 
   guessArrayWithNoGoods.forEach((value, index) => {
     if (correctArrayWithNoGoods.includes(value)) {
