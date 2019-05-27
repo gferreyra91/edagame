@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 export const goods = (guess, correct) => {
   let result = 0;
   guess = guess.toString();
@@ -27,8 +25,8 @@ export const regulars = (guess, correct) => {
     correctArray.forEach((correctValue, correctIndex) => {
       if (guessValue === correctValue && guessIndex !== correctIndex) {
         result++;
-    }
-  });
+      }
+    });
   });
 
   return result;
@@ -45,15 +43,13 @@ export const areDifferents = guess => {
   return result;
 };
 
-  guessArrayWithNoGoods.forEach((value, index) => {
-    if (correctArrayWithNoGoods.includes(value)) {
-      const indexToRemove = correctArrayWithNoGoods.indexOf(value);
-      correctArrayWithNoGoods = correctArrayWithNoGoods.filter(
-        (value, index) => index !== indexToRemove
-      );
-      result++;
+export const areFourDigits = guess => {
+  const reg = /^\d+$/;
+  guess = guess.toString();
+  if (reg.test(guess)) {
+    if (guess.length === 4) {
+      return true;
     }
-  });
-
-  return result;
+  }
+  return false;
 };
